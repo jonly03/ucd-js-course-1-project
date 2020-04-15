@@ -93,7 +93,17 @@ function createDestinationCard(name, location, photoUrl, description) {
     cardBody.appendChild(cardText);
   }
 
+  var cardDeleteBtn = document.createElement("button");
+  cardDeleteBtn.setAttribute("class", "btn btn-danger");
+  cardDeleteBtn.innerText = "Remove";
+  cardDeleteBtn.addEventListener("click", removeDestination);
+  cardBody.appendChild(cardDeleteBtn);
+
   card.appendChild(cardBody);
 
   return card;
+}
+
+function removeDestination(event) {
+  event.target.parentElement.parentElement.remove();
 }
