@@ -93,17 +93,48 @@ function createDestinationCard(name, location, photoUrl, description) {
     cardBody.appendChild(cardText);
   }
 
+  var buttonsContainer = document.createElement("div");
+  buttonsContainer.setAttribute("class", "buttons_container");
+
+  var cardEditBtn = document.createElement("button");
+  cardEditBtn.setAttribute("class", "btn btn-warning");
+  cardEditBtn.innerText = "Edit";
+  cardEditBtn.addEventListener("click", editDestination);
+
   var cardDeleteBtn = document.createElement("button");
   cardDeleteBtn.setAttribute("class", "btn btn-danger");
   cardDeleteBtn.innerText = "Remove";
   cardDeleteBtn.addEventListener("click", removeDestination);
-  cardBody.appendChild(cardDeleteBtn);
+
+  buttonsContainer.appendChild(cardEditBtn);
+  buttonsContainer.appendChild(cardDeleteBtn);
+
+  cardBody.appendChild(buttonsContainer);
 
   card.appendChild(cardBody);
 
   return card;
 }
 
+function editDestination(event) {
+  var cardBody = event.target.parentElement.parentElement;
+  var title = cardBody.children[0];
+  var subTitle = cardBody.children[1];
+
+  var card = cardBody.parentElement;
+  var photoUrl = card.children[0];
+
+  var newTitle = window.prompt("Enter new name");
+  var newSubtitle = window.prompt("Enter new location");
+  var newPhotoUrl = window.prompt("Enter new photo url");
+
+  title.innerText = newTitle;
+  subTitle.innerText = newSubtitle;
+  photoUrl.setAttribute("src", newPhotoUrl);
+}
+
 function removeDestination(event) {
-  event.target.parentElement.parentElement.remove();
+  var cardBody = event.target.parentElement.parentElement;
+  var card = cardBody.parentElement;
+  card.remove();
 }
