@@ -128,9 +128,17 @@ function editDestination(event) {
   var newSubtitle = window.prompt("Enter new location");
   var newPhotoUrl = window.prompt("Enter new photo url");
 
-  title.innerText = newTitle;
-  subTitle.innerText = newSubtitle;
-  photoUrl.setAttribute("src", newPhotoUrl);
+  if (newTitle.length > 0) {
+    title.innerText = newTitle;
+  }
+
+  if (newSubtitle.length > 0) {
+    subTitle.innerText = newSubtitle;
+  }
+
+  if (newPhotoUrl.length > 0) {
+    photoUrl.setAttribute("src", newPhotoUrl);
+  }
 }
 
 function removeDestination(event) {
